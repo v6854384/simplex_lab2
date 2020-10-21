@@ -82,17 +82,17 @@ void solve(Arr& table, bool isSpec)
         if (Vrow != 0)
         {
             std::cout << "Ведущей выбрана строка X" << table[Vrow][0] << "(имеет отрицательный свободный член)\n";
-            min = 0;
+            min = std::numeric_limits<double>::lowest();
             for (std::size_t j = 2; j < M; j++)
             {
-                if (table[Vrow][j] < min)
+                if (table[Vrow][j] < 0 && table[Vrow][j] >= min)
                 {
                     min = table[Vrow][j];
                     Vcol = j;
  
                 }
             }
-            if (min == 0)
+            if (min == std::numeric_limits<double>::lowest())
             {
                 std::cout << " Нет допустимого решения\n";
                 return;
@@ -173,7 +173,7 @@ void solve(Arr& table, bool isSpec)
  
  
         //работает только для конкретной симплекс-таблицы
-        if (table[table.size() - 1][1] == -20)
+        if (table[table.size() - 1][1] == -27)
         {
             for (std::size_t j = 2; j < table[0].size(); j++)
             {
